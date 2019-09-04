@@ -63,4 +63,28 @@ const pies = [
     printToDOM(domString, 'pieZone');
   }
 
-cardBuilder(pies);  
+  const pieClick = (e) => {
+    const pieID = e.target.id;
+    const selectedPie = [];
+    for (let i = 0; i < pies.length; i++) {
+        const pie = pies[i];
+        if (pie.instructor === pieID) {
+            selectedPie.push(pie);
+            cardBuilder(selectedPie);
+        } else if (pieID === 'all') { 
+            cardBuilder(pies);
+            // 'else if' is better than 'else' because 'else if' gives condition of when and how function can run, but if only 'else' statement is used, it'll do a catch all of everything that doesn't match pieID when computer runs through entire array. The reason why Callan works is because she's the last one on the list and no other pies will be added after it
+        }
+    }
+    // if (pieID === 'all') {
+    //     cardBuilder(pies);
+    // } else {
+    //     cardBuilder(selectedPie);
+    // }  
+  }
+
+document.getElementById('zoe').addEventListener('click', pieClick);
+document.getElementById('michael').addEventListener('click', pieClick);
+document.getElementById('callan').addEventListener('click', pieClick);
+document.getElementById('all').addEventListener('click', pieClick);
+// cardBuilder(pies);  
